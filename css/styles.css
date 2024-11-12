@@ -1,0 +1,841 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: auto;
+    background-color: #FFF0F5;
+    background-image: url('data:image/svg+xml,%3Csvg width="52" height="26" viewBox="0 0 52 26" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ff9cee" fill-opacity="0.4"%3E%3Cpath d="M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+}
+
+.logo img{
+    width: 250px;
+    height: 250px;
+}
+
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    width: 500px;
+    margin: 20px;
+}
+h1 {
+    color: #FF6B8B;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+.mesa {
+    width: 100px;
+    height: 100px;
+    background-color: #FFD3E0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: #FF6B8B;
+    border-radius: 20%;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.mesa.admin::before {
+    display: none; /* Oculta el emoji de sushi */
+}
+.mesa::before {
+    content: '🍣';
+    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.5;
+}
+.mesa:hover {
+    transform: scale(1.05);
+    background-color: #FFB3C6;
+}
+.mesa.seleccionada {
+    background-color: #FF97B5;
+    color: white;
+    transform: scale(1.1);
+}
+#mesaSeleccionada {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #FF6B8B;
+    font-weight: bold;
+}
+#botonMenu {
+    display: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #FF6B8B;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#botonMenu:hover {
+    background-color: #FF97B5;
+    transform: scale(1.05);
+}
+
+#personas{
+    display: none;
+}
+
+.añadirMesa{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.añadirMesa input{
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #FFD3E0;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.boton-emoji {
+    font-size: 24px; /* Tamaño del emoji */
+    color: #FF69B4; /* Color rosa */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 3.5rem;
+}
+
+.boton-emoji:hover {
+    color: #FF1493; /* Un rosa más oscuro para el hover */
+}
+
+/* Toggle hamburguesa */
+
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    background-color: #FF6B8B;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+.sidebar {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #FFD3E0;
+    transition: all 0.3s ease;
+    z-index: 999;
+    padding-top: 60px;
+}
+.sidebar.active {
+    left: 0;
+    border-right: 0.5rem solid white;
+    box-shadow: 7px 2px 5px 0px rgba(0,0,0,0.4);
+}
+
+
+/* Sidebar login form styles */
+.login-container {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label {
+    font-size: 16px;
+    color: #FF6B8B;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.login-form input {
+    padding: 8px;
+    font-size: 14px;
+    border: 2px solid #FFD3E0;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.login-form input:focus {
+    border-color: #FF6B8B;
+}
+
+.btn-login {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #FF6B8B;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #FF97B5;
+    transform: scale(1.05);
+}
+
+/* Formularios de admin */
+form#createForm {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px auto;
+}
+
+form#createForm input[type="text"],
+form#createForm input[type="number"],
+form#createForm textarea,
+form#createForm select {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #FFD3E0;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Oculta el input real */
+#file-upload {
+    display: none;
+}
+
+/* Estilo para el botón personalizado */
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    background-color: #FF6B8B; /* color de fondo */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos adicionales, como el cambio de color al hacer hover */
+.custom-file-upload:hover {
+    background-color: #FF97B5;
+}
+
+form#createForm input[type="text"]:focus,
+form#createForm textarea:focus,
+form#createForm select:focus {
+    border-color: #FF6B8B;
+    box-shadow: 0 0 5px rgba(255, 107, 139, 0.5);
+}
+
+form#createForm textarea {
+    resize: none;
+}
+
+form#createForm button[type="submit"] {
+    padding: 10px;
+    font-size: 18px;
+    background-color: #FF6B8B;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+form#createForm button[type="submit"]:hover {
+    background-color: #FF97B5;
+    transform: scale(1.05);
+}
+
+/* Tablas */
+/* Estilo para la tabla de productos */
+#prodTable {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #FF6B8B;
+    color: white;
+    text-align: left;
+}
+
+#prodTable thead tr {
+    border-bottom: 2px solid #FFD3E0;
+}
+
+#prodTable thead th {
+    padding: 12px 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+#prodTable tbody tr:hover {
+    background-color: #FFD3E0;
+    transition: background-color 0.3s ease;
+}
+
+#prodTable tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #FFD3E0;
+    color: #FF6B8B;
+    font-size: 16px;
+    text-align: center;
+}
+
+h2 {
+    color: #FF6B8B;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.edicion{
+    display: none;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #FFD3E0;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.td-btn button{
+    padding: 0.5rem;
+    margin: 0.5rem;
+    color: white;
+    border: none;
+    font-size: 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+textarea{
+    resize: none;
+}
+
+/* Estilos para la imagen de la tabla del admin */
+.listado img{
+    width: 60%;
+    object-fit: cover;
+    height: 150px;
+}
+
+/* Estilos de filtracion */
+.filtrarFecha{
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filtrarFecha input[type="date"]{
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #FFD3E0;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 200px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.filtrarFecha label{
+    font-weight: bold;
+    color: #FF6B8B
+}
+
+.boton {
+    padding: 10px;
+    width: 100px;
+    font-size: 16px;
+    background-color: #FF6B8B;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.boton:hover {
+    background-color: #FF97B5;
+    transform: scale(1.05);
+}
+
+/* Estilos para los productos */
+.product-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.producto {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    width: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin:1rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.producto h2 {
+    color: #FF6B8B;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.producto p {
+    color: #555;
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+/* Estilos del carrito */
+.cart-container {
+    width: 300px; /* Ancho del carrito */
+    border: 1px solid #ccc; /* Borde del carrito */
+    border-radius: 10px; /* Esquinas redondeadas */
+    padding: 20px; /* Espaciado interno */
+    background-color: rgba(255, 255, 255, 0.9); /* Color de fondo */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra del carrito */
+    position: fixed; /* Fijar el carrito en la pantalla */
+    right: 20px; /* Espaciado desde la derecha */
+    top: 20px; /* Espaciado desde la parte superior */
+    z-index: 1000; /* Para que aparezca sobre otros elementos */
+}
+
+.cart-container h2 {
+    font-size: 1.5em; /* Tamaño del texto del título */
+    margin-bottom: 15px; /* Espaciado inferior */
+    color: #333; /* Color del texto */
+}
+
+.cart-items {
+    max-height: 200px; /* Altura máxima del contenedor de productos */
+    overflow-y: auto; /* Permitir desplazamiento vertical */
+    margin-bottom: 15px; /* Espaciado inferior */
+}
+
+.cart-items div {
+    padding: 10px; /* Espaciado interno de cada producto */
+    border-bottom: 1px solid #ddd; /* Línea divisoria entre productos */
+    display: flex; /* Para alinear elementos */
+    justify-content: space-between; /* Espaciado entre nombre y precio */
+}
+
+.cart-items div:last-child {
+    border-bottom: none; /* Sin línea divisoria en el último producto */
+}
+
+.cart-total {
+    font-size: 1.2em; /* Tamaño del texto total */
+    font-weight: bold; /* Negrita para el total */
+    text-align: right; /* Alinear a la derecha */
+}
+
+
+
+/* Login */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    color: #FF6B8B;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 2px solid #FFD3E0;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: #FF6B8B;
+    box-shadow: 0 0 5px rgba(255, 107, 139, 0.3);
+}
+
+.btn-login {
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #FF6B8B;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #FF97B5;
+    transform: scale(1.05);
+}
+
+/* Estilos para el nav */
+
+nav {
+    background-color: #FF6B8B;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    margin: 0 1rem;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #FF97B5;
+    transform: scale(1.05);
+}
+
+nav a.active {
+    background-color: #FFD3E0;
+    color: #FF6B8B;
+}
+
+.edicionMesa{
+    font-weight: bold;
+    font-size: 2rem
+}
+
+/* Modales */
+
+.modal{
+    display: none;
+}
+
+.modal-contenido {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.abrir-modal-recuperar{
+    cursor: pointer;
+    color:#FF1493
+}
+
+.modal-contenido input[type="email"],
+.modal-contenido input[type="password"] {
+    width: calc(100% - 30px); /* Aplicando el mismo ajuste de ancho */
+    padding: 12px;
+    margin: 10px auto; /* Centrado automático */
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    font-size: 1em;
+    display: block;
+}
+
+.modal-contenido input[type="submit"] {
+    background-color: #FF6B8B;
+    color: white;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.modal-contenido input[type="submit"]:hover {
+    background-color: #FF97B5;
+}
+
+.cerrarRecuperar,
+.cerrarRegistro {
+    color: #ffdd57;
+    font-size: 2em;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.cerrarRecuperar:hover,
+.cerrarRegistro:hover {
+    color: white;
+}
+
+.mensaje{
+    padding: 10px;
+    margin-bottom:15px;
+    border-radius: 5px;
+    display: inline;
+}
+
+.info{
+    background-color: #e7f3fe;
+    border: 1px solid #4f59b6
+}
+
+.error{
+    background-color: #ff3737;
+    border: 1px solid #9e3200
+}
+
+.success{
+    background-color: #6bdd1f;
+    border: 1px solid #638600
+}
+
+/* Estilos para la factura */
+/* Estilos generales de la factura */
+#detallesPedido {
+    width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.factura-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.factura-table th,
+.factura-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.factura-table th {
+    background-color: #f1f1f1;
+    color: #333;
+    font-weight: bold;
+}
+
+.factura-table td {
+    color: #555;
+}
+
+/* Estilo para el total de la factura */
+#totalPedido {
+    text-align: right;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+#totalPedido p {
+    font-weight: bold;
+    color: #333;
+}
+
+
+
+@media (max-width: 600px) {
+    .logo img{
+        width: 200px;
+        height: 200px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .mesa {
+        width: 100%;
+        height: 150px;
+        font-size: 14px;
+    }
+    .mesa::before {
+        font-size: 24px;
+        top: 5px;
+    }
+    #mesaSeleccionada {
+        font-size: 18px;
+    }
+    #botonMenu {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        padding: 0.5rem;
+    }
+
+    nav a {
+        font-size: 16px;
+        padding: 0.5rem 1rem;
+        margin: 0.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    .grid {
+        gap: 10px;
+    }
+    .mesa {
+        font-size: 16px;
+    }
+    .mesa::before {
+        font-size: 20px;
+    }
+
+    nav a {
+        font-size: 14px;
+        padding: 0.5rem;
+        margin: 0.5rem;
+    }
+}
+
+/* Para impresion */
+@media print {
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+    }
+
+    .factura-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .factura-table th,
+    .factura-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .factura-table th {
+        background-color: #f1f1f1;
+    }
+
+    .factura-table td {
+        color: #555;
+    }
+
+    .factura-table tr:last-child td {
+        font-weight: bold;
+    }
+
+    .factura-table tfoot td {
+        text-align: center;
+    }
+
+    #imprimirFacturaBtn {
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    #imprimirFacturaBtn:hover {
+        background-color: #45a049;
+    }
+}
