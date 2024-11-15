@@ -121,7 +121,17 @@ function disminuirCantidad(index) {
 }
 
 let pedidoBloqueado = false;
-const tiempoBloqueo = 30; // Tiempo de espera en segundos
+let tiempoBloqueo;
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('controllers/getTiempoBloqueo.php')
+        .then(response => response.json())
+        .then(data => {
+            tiempoBloqueo = data.precio; // Asigna el valor de la base de datos
+            console.log(`Tiempo de bloqueo obtenido: ${tiempoBloqueo}`);
+        })
+        .catch(error => console.error('Error al obtener el tiempo de bloqueo:', error));
+});
 
 // Función para confirmar el pedido
 async function confirmarPedido() {

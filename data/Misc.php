@@ -49,4 +49,10 @@ class Misc{
         $this->db->query("DELETE FROM miscelaneo where id=?",[$id]);
         return $this->db->query('SELECT ROW_COUNT() as affected')->fetch_assoc()['affected'];
     }
+
+    public function getMiscTiempo(){
+        $result = $this->db->query("SELECT precio FROM miscelaneo WHERE concepto='tiempo'");
+        $data = $result->fetch_assoc();
+        return $data['precio']; // Devuelve solo el valor del tiempo
+    }
 }

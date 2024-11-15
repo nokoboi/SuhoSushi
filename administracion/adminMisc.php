@@ -1,3 +1,10 @@
+<?php
+    require_once 'checkSession.php';
+    // si previamente está logeado entonces esto no se carga
+    require_login();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
