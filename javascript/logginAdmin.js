@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost/ProyectoSushi/controllers/usuarios.php';
+const API_URL = 'https://kvnsc.es/controllers/usuarios.php';
 const btnAdmin = document.getElementById('btnAdmin');
 
 function validateLoginForm() {

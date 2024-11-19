@@ -1,5 +1,5 @@
-const api_product = 'http://localhost/ProyectoSushi/controllers/Productos.php';
-const api_pedido = 'http://localhost/ProyectoSushi/controllers/Pedidos.php';
+const api_product = 'https://kvnsc.es/controllers/Productos.php';
+const api_pedido = 'https://kvnsc.es/ProyectoSushi/controllers/Pedidos.php';
 
 // Obtener el parámetro 'mesa' de la URL
 const urlParams = new URLSearchParams(window.location.search);

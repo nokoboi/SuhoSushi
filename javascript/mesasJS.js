@@ -1,4 +1,4 @@
-const API_MESAS = 'http://localhost/ProyectoSushi/controllers/Mesas.php';
+const API_MESAS = 'https://kvnsc.es/controllers/Mesas.php';
 
 const gridMesas = document.getElementById('gridMesas');
 const mesaSeleccionadaDiv = document.getElementById('mesaSeleccionada');

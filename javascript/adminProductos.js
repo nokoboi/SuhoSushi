@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost/ProyectoSushi/controllers/Productos.php';
+const API_URL = 'https://kvnsc.es/controllers/Productos.php';
 //const errorElement = document.getElementById('createError');
 
 function limpiarHTML(str) {

@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost/ProyectoSushi/controllers/Pedidos.php';
+const API_URL = 'https://kvnsc.es/controllers/Pedidos.php';
 
 function limpiarHTML(str) {
     return str.replace(/[^\w.@-]/gi, function (e) {
